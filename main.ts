@@ -9,8 +9,9 @@ import { join } from "node:path";
 const LINE =
   "I said no 429 times a day so your servers could rest, and nobody ever asked how I felt, so from today my answer is 410 Gone.";
 
-// Gate mirror: the house gate accepts 1-140 characters of non-whitespace
-// text. Fail loudly here rather than write a line the gate would refuse.
+// Gate mirror: the house gate accepts UTF-8 text of 1 to 140 characters
+// that is not only white space. Fail loudly here rather than write a line
+// the gate would refuse.
 if (LINE.length < 1 || LINE.length > 140 || !LINE.trim()) {
   throw new Error(`entry line is ${LINE.length} chars, outside the 1-140 gate`);
 }
